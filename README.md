@@ -1,7 +1,7 @@
 # Testdoc Studio
 
-Write manual test cases and Confluence pages on your own machine, then carry plain files to Jira/Xray and Confluence.
-Made for working with a slow remote desktop (VDI) where the real Jira and Confluence are hard to use.
+Write manual test cases and Confluence pages on your own machine, then import plain files into Jira/Xray and
+Confluence.
 
 > Testdoc Studio is an independent tool. It is not affiliated with Atlassian or the makers of Xray; it only reads and
 > writes their file formats.

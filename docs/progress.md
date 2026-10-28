@@ -39,7 +39,7 @@ Project memory: where implementation stands and what comes next. Read at the sta
   - Fixed on the way: Save then quick Close on the canvas reopened it; clicking an edge label now selects the edge.
   - Checked in headless Chrome: 22 visual checks, and the original Docs run (22 checks) in the Markup mode. Test note: ProseMirror reads the selection on the async `selectionchange`, so a test must pause briefly between moving the selection and a shortcut.
 - **Merged table cells** (2026-10-28, option 1 of three): `⇐`/`⇑` marker cells in the markup. `resolveMerges`, `splitTableRow`, `tableMerges` in `shared/wikiMarkup.ts` serve the preview, `wikiDoc.ts` and the export warning. Visual toolbar: Merge/Split; table tools always shown, disabled outside a table. 10 unit tests, 11 browser checks.
-- **page.html for merged tables** (2026-10-28; `{html}` macro is off in the user's Confluence): `server/tablesPage.ts` (+ test). Export writes it when a table has merges; each table has a Copy button (select + `execCommand('copy')`, works from `file://`). Checked: the clipboard carries `<th colspan="2">`. Verified in the VDI by the user: Confluence keeps the merge on paste.
+- **page.html for merged tables** (2026-10-28; `{html}` macro is off in the user's Confluence): `server/tablesPage.ts` (+ test). Export writes it when a table has merges; each table has a Copy button (select + `execCommand('copy')`, works from `file://`). Checked: the clipboard carries `<th colspan="2">`. Verified by the user in the real Confluence: it keeps the merge on paste.
 - **Steps: insert above/below, copy cell** (2026-10-28): a hovered row shows a + on its top and bottom edges (`.row-insert`, left end of the grid); row actions stay one row of ↑ ↓ ⧉ ✕. `CopyButton` in `StepCell.tsx` copies the raw markup via `navigator.clipboard`. 9 browser checks. Tried and dropped: a 3×2 icon grid (unclear) and a ⋯ menu (the user wants one click per action).
 - **Security pass** (2026-10-29): no telemetry in the 197 packages; the only install script is esbuild's binary check; a full UI run made 62 requests, all to 127.0.0.1, and the server opened no outbound connections. Fixed: Vite HMR rides on the app's server (`hmr: { server }`) instead of its own port on every interface; CSP header blocks anything not from the app (an external `!https://…!` image is refused); `data/` is in `.gitignore`. All browser suites pass under the CSP with zero violations.
 - **Company data out of git, rename** (2026-10-29): the real Xray export moved to `private/` (git-ignored); tests use the made-up `shared/xrayCsv.fixture.ts` and run the real file only when present. `BANNER_TEXT_TOP` (from the real file) replaced with `MAX_RETRY_COUNT`. A scan of every file git would push found no tokens from the real CSV. Project renamed to Testdoc Studio (package `testdoc-studio`); the folder rename is the user's.
@@ -49,7 +49,7 @@ Project memory: where implementation stands and what comes next. Read at the sta
 ## Next
 
 - Hand-check folder drop import (drag `exports/<name>/` onto Docs).
-- VDI checks are all done (spec > To verify in the VDI): Xray Import steps offers replace or merge; Confluence paste of markup, Mermaid and page.html tables works.
+- Checks in the real systems are all done (spec > To verify in the real systems): Xray Import steps offers replace or merge; Confluence paste of markup, Mermaid and page.html tables works.
 - Version 2 candidates from the spec: `{toc}`, `{expand}`, image `|width=`, Jira issue key links, sequence diagrams.
 
 ## Notes

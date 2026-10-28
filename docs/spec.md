@@ -6,17 +6,17 @@ Agreed in a grilling session on 2026-10-28.
 
 ## Purpose
 
-The real Jira and Confluence are reachable only through a slow VDI. This app lets the user write, locally:
+This app lets the user write, locally:
 
 - the **steps of manual Xray tests**
 - **one Confluence doc at a time**
 
-The app exports files that the user carries into the VDI by hand and imports into the real systems:
+The app exports files that the user imports into the real systems:
 
 - Jira 10.3.x Data Center with Xray for Data Center (Xray version unknown)
 - Confluence 9.2.x Data Center
 
-The mock is the source of truth. Edits made directly in the real systems are not pulled back. Moving files into or out of the VDI, and whether company policy allows it, is out of scope.
+The app is the source of truth. Edits made directly in the real systems are not pulled back.
 
 ## Runtime
 
@@ -249,7 +249,7 @@ To bring it into Confluence:
 - Golden tests: the made-up example in `shared/xrayCsv.fixture.ts` reads into known steps and writes back byte-identical; when `private/csv_example.csv` exists (the author's machine), the real export must round-trip byte-identical too.
 - Unit tests for the markup → preview renderer and for the canvas → Mermaid generator.
 
-## To verify in the VDI
+## To verify in the real systems
 
 Nothing open.
 

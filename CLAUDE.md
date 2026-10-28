@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-**Testdoc Studio**: a local-only authoring tool, not affiliated with Atlassian or Xray. It mocks Jira+Xray (manual test steps) and Confluence (one doc at a time). It exports files that the user carries by hand into a slow VDI and imports into the real Jira 10.3 / Confluence 9.2 Data Center. Full agreed spec: `docs/spec.md`. Read it before changing behavior.
+**Testdoc Studio**: a local-only authoring tool, not affiliated with Atlassian or Xray. It mocks Jira+Xray (manual test steps) and Confluence (one doc at a time). It exports files that the user imports into the real Jira 10.3 / Confluence 9.2 Data Center. Full agreed spec: `docs/spec.md`. Read it before changing behavior.
 
 ## Commands
 
@@ -34,7 +34,7 @@ Keep `:` out of the project path. Vite refuses to serve any path that contains `
 - Never commit. The user manages git.
 - Change project files with the Edit/Write tools, not shell scripts (`python3`, `sed`, `cat <<EOF`). Edits inside the project are pre-approved in `.claude/settings.local.json`; shell commands are not, apart from `npm test`, `npm run typecheck` and `npx vitest`.
 - Reply to the user in Ukrainian. In grilling rounds, "+" means "accept the recommendation", so keep recommendations concrete.
-- The user is a QA engineer who writes manual Xray tests and Confluence docs and reaches the real systems only through a slow VDI. VDI transfer and company policy are out of scope.
+- The user is a QA engineer who writes manual Xray tests and Confluence docs.
 
 ## Skills
 
