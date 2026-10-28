@@ -1,0 +1,7 @@
+node_modules/
+# User content (tests, docs) and real exports from work: company data, never pushed.
+data/
+exports/
+private/
+.DS_Store
+.claude/settings.local.json
