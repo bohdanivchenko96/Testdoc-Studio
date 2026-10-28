@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { CopyIcon } from '../icons';
 import { WikiPreview } from '../WikiPreview';
 import { continueList, isPlainEnter, prefixLines, wrapSelection, type TextEdit } from '../markupEdit';
 
@@ -73,8 +74,8 @@ function CopyButton({ text }: { text: string }) {
       }}
       onKeyDown={(e) => e.stopPropagation()}
     >
-      {/* ⎘, not ⧉: the row's Duplicate button uses ⧉. */}
-      {state === 'copied' ? '✓' : state === 'failed' ? '!' : '⎘'}
+      {/* A clipboard, unlike the row's Duplicate button (two sheets). */}
+      {state === 'copied' ? '✓' : state === 'failed' ? '!' : <CopyIcon />}
     </button>
   );
 }

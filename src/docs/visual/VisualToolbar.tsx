@@ -1,4 +1,5 @@
 import { useEditorState, type Editor } from '@tiptap/react';
+import { MOD } from '../../platform';
 import { PANEL_KINDS } from './extensions';
 
 interface Props {
@@ -39,8 +40,8 @@ export function VisualToolbar({ editor, onImage, onDiagram }: Props) {
 
   const groups: Tool[][] = [
     [
-      { label: '↶', title: 'Undo (Cmd+Z)', disabled: !state.canUndo, run: () => chain().undo().run() },
-      { label: '↷', title: 'Redo (Cmd+Shift+Z)', disabled: !state.canRedo, run: () => chain().redo().run() },
+      { label: '↶', title: `Undo (${MOD}+Z)`, disabled: !state.canUndo, run: () => chain().undo().run() },
+      { label: '↷', title: `Redo (${MOD}+Shift+Z)`, disabled: !state.canRedo, run: () => chain().redo().run() },
     ],
     [1, 2, 3].map((level) => ({
       label: `H${level}`,
@@ -49,9 +50,9 @@ export function VisualToolbar({ editor, onImage, onDiagram }: Props) {
       run: () => chain().toggleHeading({ level: level as 1 | 2 | 3 }).run(),
     })),
     [
-      { label: 'B', title: 'Bold (Cmd+B)', active: state.bold, run: () => chain().toggleBold().run() },
-      { label: 'I', title: 'Italic (Cmd+I)', active: state.italic, run: () => chain().toggleItalic().run() },
-      { label: '{{ }}', title: 'Monospace (Cmd+E)', active: state.code, run: () => chain().toggleCode().run() },
+      { label: 'B', title: `Bold (${MOD}+B)`, active: state.bold, run: () => chain().toggleBold().run() },
+      { label: 'I', title: `Italic (${MOD}+I)`, active: state.italic, run: () => chain().toggleItalic().run() },
+      { label: '{{ }}', title: `Monospace (${MOD}+E)`, active: state.code, run: () => chain().toggleCode().run() },
     ],
     [
       { label: '•', title: 'Bullet list', active: state.bulletList, run: () => chain().toggleBulletList().run() },
@@ -66,7 +67,7 @@ export function VisualToolbar({ editor, onImage, onDiagram }: Props) {
       run: () => togglePanel(kind),
     })),
     [
-      { label: 'Image', title: 'Insert an image file (or paste one with Cmd+V)', run: onImage },
+      { label: 'Image', title: `Insert an image file (or paste one with ${MOD}+V)`, run: onImage },
       { label: 'Diagram', title: 'Draw a diagram', run: onDiagram },
     ],
   ];

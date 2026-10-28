@@ -691,6 +691,12 @@ body {
   cursor: default;
 }
 
+/* Inline SVG icons (src/icons.tsx) sit centered in their buttons like a glyph. */
+svg.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .icon-button {
   width: 24px;
   height: 24px;

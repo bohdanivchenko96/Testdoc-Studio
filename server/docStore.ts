@@ -163,7 +163,8 @@ export function createDocStore(dir: string) {
       serial(async () => {
         if (id === (await currentId())) throw new ConflictError('The current doc cannot be deleted');
         await readMeta(id);
-        await rm(docDir(id), { recursive: true });
+        // maxRetries: Windows can briefly hold a file (antivirus, indexer) and fail the removal with EBUSY/EPERM.
+        await rm(docDir(id), { recursive: true, maxRetries: 5 });
       }),
 
     addImage: (id: string, png: Uint8Array) =>

@@ -8,8 +8,8 @@ Confluence.
 
 ## Quick start
 
-Requirements: [Node.js](https://nodejs.org) 22.12 or newer (24 recommended). The project folder path must not
-contain `:`.
+Requirements: [Node.js](https://nodejs.org) 22.12 or newer (24 recommended). Runs on macOS and Windows (use any
+terminal: Terminal, PowerShell or cmd). On macOS the project folder path must not contain `:`.
 
 ```sh
 npm install

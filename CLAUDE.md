@@ -30,11 +30,21 @@ Keep `:` out of the project path. Vite refuses to serve any path that contains `
 
 ## Working agreement
 
-- Project memory lives in this repo, not in `~/.claude`: progress and next steps in `docs/progress.md`, working rules here. Read `docs/progress.md` at session start and update it when work lands.
+- Project memory lives in this repo, not in `~/.claude`: behavior in `docs/spec.md`, current state and next steps in `docs/progress.md` (short; history belongs in git), working rules and testing notes here. Read `docs/progress.md` at session start; when work lands, update the spec and replace the progress entries it settles.
 - Never commit. The user manages git.
 - Change project files with the Edit/Write tools, not shell scripts (`python3`, `sed`, `cat <<EOF`). Edits inside the project are pre-approved in `.claude/settings.local.json`; shell commands are not, apart from `npm test`, `npm run typecheck` and `npx vitest`.
 - Reply to the user in Ukrainian. In grilling rounds, "+" means "accept the recommendation", so keep recommendations concrete.
 - The user is a QA engineer who writes manual Xray tests and Confluence docs.
+
+## Testing notes
+
+- `tsx` runs without watch: restart `npm start` after server changes. Changes in `src/` reach the browser by themselves.
+- Browser checks: `playwright-core` in a scratch dir, launched with `channel: 'chrome'` (the system Chrome).
+- Run a separate instance so the user's data and Finder are left alone: `PORT=4401 MOCK_DATA_DIR=… MOCK_EXPORTS_DIR=… MOCK_NO_REVEAL=1 npx tsx server/index.ts`. HMR shares the app's port, so instances don't clash.
+- The page has a strict CSP. Playwright's `waitForFunction` evaluates a string and is blocked ("unsafe-eval"): poll with `page.evaluate` instead.
+- ProseMirror reads the selection on the async `selectionchange`: pause briefly between moving the selection and a shortcut such as `Meta+b`.
+- On the canvas, wait until the new label's textarea has focus before pressing Enter; otherwise Enter hits the toolbar button that still has focus.
+- Dropping a real folder (`webkitGetAsEntry`) can't be faked in a synthetic drop: check folder import by hand.
 
 ## Skills
 

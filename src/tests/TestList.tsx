@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { TestSummary } from '../../shared/testCase';
+import { DuplicateIcon, PencilIcon } from '../icons';
 
 interface Props {
   tests: TestSummary[];
@@ -34,10 +35,10 @@ export function TestList({ tests, selectedId, onSelect, onCreate, onRename, onDu
             </div>
             <div className="test-actions" onClick={(e) => e.stopPropagation()}>
               <button type="button" title="Rename" onClick={() => onRename(t.id)}>
-                ✎
+                <PencilIcon />
               </button>
               <button type="button" title="Duplicate" onClick={() => onDuplicate(t.id)}>
-                ⧉
+                <DuplicateIcon />
               </button>
               <button type="button" title="Delete" onClick={() => onDelete(t)}>
                 ✕

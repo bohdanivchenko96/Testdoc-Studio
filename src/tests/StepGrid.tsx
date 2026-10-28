@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { Step } from '../../shared/testCase';
+import { DuplicateIcon } from '../icons';
 import { StepCell } from './StepCell';
 
 // A step plus a React key that survives reordering.
@@ -156,7 +157,7 @@ export function StepGrid({ rows, onChange }: { rows: Row[]; onChange: (rows: Row
                 ↓
               </button>
               <button type="button" title="Duplicate step" onClick={() => insertAt(i + 1, row.step)}>
-                ⧉
+                <DuplicateIcon />
               </button>
               <button type="button" title="Delete step" onClick={() => onChange(rows.filter((_, j) => j !== i))}>
                 ✕

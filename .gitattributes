@@ -1,0 +1,6 @@
+# LF everywhere, also on Windows checkouts: tests compare exact strings, and Git for Windows would otherwise turn LF
+# into CRLF. Xray's CRLF bytes live in source as \r\n escapes, so they are unaffected.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary

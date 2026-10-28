@@ -1,4 +1,5 @@
 import { insertBlock, prefixLines, wrapSelection, type TextEdit } from '../markupEdit';
+import { MOD } from '../platform';
 
 type Tool = { label: string; title: string; apply: (e: TextEdit) => TextEdit };
 
@@ -53,7 +54,7 @@ export function DocToolbar({ onEdit, onImage, onDiagram }: Props) {
         </div>
       ))}
       <div className="doc-toolbar-group">
-        {button('Image', 'Insert an image file (or paste one with Cmd+V)', onImage)}
+        {button('Image', `Insert an image file (or paste one with ${MOD}+V)`, onImage)}
         {button('Diagram', 'Draw a diagram', onDiagram)}
       </div>
     </div>

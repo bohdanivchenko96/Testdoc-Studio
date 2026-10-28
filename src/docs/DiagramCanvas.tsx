@@ -27,18 +27,20 @@ import { toPng } from 'html-to-image';
 import { useEffect, useRef, useState } from 'react';
 import { emptyDiagram, parseDiagram, toMermaid, type Diagram, type Shape } from '../../shared/diagram';
 import { docsApi } from '../api';
+import { ShapeIcon } from '../icons';
+import { MOD } from '../platform';
 
 // editing: the label is open for typing. It lives only on the canvas and never reaches diagram-N.json.
 type ShapeNode = Node<{ label: string; shape: Shape; editing?: boolean }, 'shape'>;
 type FlowEdge = Edge<{ dotted: boolean; elbow?: boolean; editing?: boolean }, 'labeled'>;
 
-const SHAPE_TOOLS: { shape: Shape; label: string; title: string; defaultText: string }[] = [
-  { shape: 'rect', label: '▭', title: 'Step (rectangle)', defaultText: 'Step' },
-  { shape: 'rounded', label: '▢', title: 'Action (rounded)', defaultText: 'Action' },
-  { shape: 'diamond', label: '◇', title: 'Decision (diamond)', defaultText: 'Decision?' },
-  { shape: 'stadium', label: '⬭', title: 'Start / end (stadium)', defaultText: 'Start' },
-  { shape: 'circle', label: '○', title: 'Point (circle)', defaultText: '' },
-  { shape: 'cylinder', label: '⛁', title: 'Database (cylinder)', defaultText: 'DB' },
+const SHAPE_TOOLS: { shape: Shape; title: string; defaultText: string }[] = [
+  { shape: 'rect', title: 'Step (rectangle)', defaultText: 'Step' },
+  { shape: 'rounded', title: 'Action (rounded)', defaultText: 'Action' },
+  { shape: 'diamond', title: 'Decision (diamond)', defaultText: 'Decision?' },
+  { shape: 'stadium', title: 'Start / end (stadium)', defaultText: 'Start' },
+  { shape: 'circle', title: 'Point (circle)', defaultText: '' },
+  { shape: 'cylinder', title: 'Database (cylinder)', defaultText: 'DB' },
 ];
 
 const SNAPSHOT_PADDING = 24;
@@ -376,7 +378,7 @@ export function DiagramCanvas({ docId, diagram, onSaved, onClose, onError }: Pro
         <div className="doc-toolbar-group">
           {SHAPE_TOOLS.map((tool) => (
             <button key={tool.shape} type="button" title={tool.title} onClick={() => addShape(tool)}>
-              {tool.label}
+              <ShapeIcon shape={tool.shape} />
             </button>
           ))}
         </div>
@@ -402,7 +404,7 @@ export function DiagramCanvas({ docId, diagram, onSaved, onClose, onError }: Pro
         </div>
         <span
           className="muted canvas-hint"
-          title="Drag on empty space to select an area · Shift/Cmd+click adds to the selection · Cmd+A selects all · drag a selected shape to move them all · scroll or right-drag to pan · pinch or Ctrl+scroll to zoom"
+          title={`Drag on empty space to select an area · Shift/${MOD}+click adds to the selection · ${MOD}+A selects all · drag a selected shape to move them all · scroll or right-drag to pan · pinch or Ctrl+scroll to zoom`}
         >
           Drag from a dot to connect · double-click to edit text · drag on empty space to select · Delete removes
         </span>

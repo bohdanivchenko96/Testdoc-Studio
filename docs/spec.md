@@ -20,10 +20,12 @@ The app is the source of truth. Edits made directly in the real systems are not 
 
 ## Runtime
 
-- Runs on the local machine only: no hosting, no git remote.
+- Runs on the local machine only, no hosting. macOS and Windows.
 - TypeScript throughout. React + Vite for the UI, a small Node (Express) server that reads and writes files.
-- `npm start` starts one process on `127.0.0.1`. No auth, single user.
-- UI language is English. The look is Atlassian-like, built with our own CSS (no Atlaskit). A left nav switches between **Tests** and **Docs**.
+- `npm start` starts one process on `127.0.0.1`, with Vite's HMR on the same port. No auth, single user.
+- Nothing leaves the machine: no telemetry, and a Content-Security-Policy header blocks every load that isn't from the app itself (an external `!https://…!` image in markup is refused).
+- UI language is English. The look is Atlassian-like, built with our own CSS (no Atlaskit). A left nav switches between **Tests** and **Docs**. Panels use Confluence Data Center's colors and icons: info blue, note yellow, warning red. Shortcut hints say Cmd on macOS and Ctrl on Windows.
+- Export folder and file names are made safe for macOS and Windows: forbidden characters become `_`, and Windows' reserved device names (`CON`, `NUL`, `COM1`…) get a `_` suffix.
 
 ## Storage
 
